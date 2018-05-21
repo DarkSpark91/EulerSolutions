@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+def createProblem(problemNum):
+    name = "Euler" + problemNum
+    code = "public class " + name + """ {
+    public static void main(String[] args) {
+
+    }
+}"""
+    os.makedirs(name)
+    file = open(name + "/" + name+".java", "w+")
+    file.write(code)
+
+
+def movefiles():
+    for file in os.listdir():
+        if file[-5:] == ".java":
+            name = file[:-5]
+            os.makedirs(name)
+            os.rename(file, name+"/"+file)
+
+createProblem(sys.argv[1])
