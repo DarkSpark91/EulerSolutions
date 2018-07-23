@@ -7,7 +7,10 @@ def createProblem(problemNum):
     name = "Euler" + problemNum
     code = "public class " + name + """ {
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
 
+        System.out.println("Program took " 
+            + (System.currentTimeMillis() - start) + "ms");
     }
 }"""
     os.makedirs(name)

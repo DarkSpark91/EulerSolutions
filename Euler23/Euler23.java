@@ -1,20 +1,24 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//todo fix
 public class Euler23 {
-    public static boolean isAbundant(long num) {
-        int total = 1;
-        for(int i = 2; i * i <= num; i++) {
-            if(num % i == 0) {
-                total += i + num/i;
-            }
-        }
-        return num < total;
-    }
+    private static boolean isAbundant(int n) {
+		if (n < 1)
+			throw new IllegalArgumentException(""+n);
+		
+		int sum = 1;
+		int end = (int)Math.sqrt(n);
+		for (int i = 2; i <= end; i++) {
+			if (n % i == 0)
+				sum += i + n / i;
+		}
+		if (end * end == n)
+			sum -= end;
+		return sum > n;
+}
 
     public static boolean isSum(int num, int sub) {
-        return isAbundant(num-sub);
+        return num != sub && isAbundant(Math.abs(num-sub));
     }
 
     public static boolean isNotSumable(int num, ArrayList<Integer> abundants) {
@@ -29,14 +33,14 @@ public class Euler23 {
     }
 
     public static void main(String[] args) {
-        int limit = 28123;
+        long limit = 28123;
         ArrayList<Integer> abundants = new ArrayList<>();
         for(int n = 12; n < limit; n++) {
             if(isAbundant(n))
                 abundants.add(n);
         }
         long sum = 0;
-        for(int i = 0; i <= limit; i++) {
+        for(int i = 1; i <= limit; i++) {
             if(isNotSumable(i, abundants)) {
                 sum += i;
             }
