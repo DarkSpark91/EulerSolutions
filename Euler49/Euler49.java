@@ -32,19 +32,20 @@ public class Euler49 {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         ArrayList<Integer> primes = getPrimes(10000);
-
+        String result = "";
         for(int i = 0; i < primes.size(); i++) {
             for(int j = i+1; j < primes.size(); j++) {
                 int d = primes.get(j) - primes.get(i);
                 int k = d + primes.get(j);
                 if(k < 10000 && primes.contains(k)) {
                     if(isPermutation(primes.get(i), primes.get(j), k)) {
-                        System.out.println("" + primes.get(i) + primes.get(j) + k);
+                        result = "" + primes.get(i) + primes.get(j) + k;
                     }
                 }
             }
         }
 
+        System.out.println(result);
         System.out.println("Program took " 
             + (System.currentTimeMillis() - start) + "ms");
     }

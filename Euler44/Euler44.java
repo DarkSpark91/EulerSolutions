@@ -15,8 +15,6 @@ public class Euler44 {
 
         boolean finished = true;
 
-        System.out.println(isPentagonal(1));
-
         for(int i = 1; finished; i++) {
             int pI = getPentagonal(i);
             for(int j = 1; j < i; j++) {
